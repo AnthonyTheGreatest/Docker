@@ -1,0 +1,45 @@
+https://www.youtube.com/watch?v=TJzYP21ELLM&list=PLbcJ_vPJW9XNhg88VFlDfWcetjFr-yLKF&index=2
+
+docker run node:18
+
+index.js...
+package.json...
+index.html...
+
+Dockerfile...
+.dockeringore...
+
+// create image: (! necessary whenever Dockerfile is altered,
+                 no need to change image name or tag !)
+
+docker build . -t first-docker-app:1.0
+(docker images)
+
+// run image - start container:
+
+docker run --name c1 -d -p 3000:3000 first-docker-app:1.0
+
+// For developement:
+   (for localhost:3000 to update on refresh,
+   after changes are made to html file)
+// (-v) When given two arguments (host_path:container_path),
+   like -v /data/mysql:/var/lib/mysql,
+   this mounts the specified directory on the host inside the container
+   at the specified path.
+
+docker run -d -v /d/Projects/practice_2023/docker:/app -p 3000:3000 first-docker-app:1.0
+or (?)
+docker run -d -v $(pwd):/app -p 3000:3000 first-docker-app:1.0
+(localhost:3000)
+
+// If container is exited:
+
+docker ps -a
+docker start {~3 digits from container id}
+(docker stop ...)
+
+// Enter container as created user (named app):
+
+winpty exec -it {id / name} bash
+exit
+
