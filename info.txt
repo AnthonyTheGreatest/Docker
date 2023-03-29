@@ -22,15 +22,15 @@ docker run --name c1 -d -p 3000:3000 first-docker-app:1.0
 // For developement:
    (for localhost:3000 to update on refresh,
    after changes are made to html file)
-// (-v) When given two arguments (host_path:container_path),
-   like -v /data/mysql:/var/lib/mysql,
-   this mounts the specified directory on the host inside the container
-   at the specified path.
 
-docker run -d -v /d/Projects/practice_2023/docker:/app -p 3000:3000 first-docker-app:1.0
-or (?)
-docker run -d -v $(pwd):/app -p 3000:3000 first-docker-app:1.0
-(localhost:3000)
+docker run -d -v /$(pwd):/app -p 3000:3000 first-docker-app:1.0
+or 
+docker run --name c1 -d -v /$(pwd):/app -p 3000:3000 first-docker-app:1.0
+
+https://stackoverflow.com/questions/40213524/using-absolute-path-with-docker-run-command-not-working
+https://stackoverflow.com/questions/33312662/docker-toolbox-mount-file-on-windows
+
+(http://localhost:3000)
 
 // If container is exited:
 
